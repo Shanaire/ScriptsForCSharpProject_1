@@ -17,8 +17,8 @@ public class FadeManager : MonoBehaviour
      */
 
     //___________________________________________REFERENCED FILES______________________________________________//
-
-
+    public CameraManager CamManager;
+    private List<Camera> RoomCams_ = new List<Camera>();
 
     //_________________________________________________________________________________________________________//
 
@@ -30,15 +30,60 @@ public class FadeManager : MonoBehaviour
     public int RoomCounter = 0;
 
     // Accessing the material states of the materials
+    //___________________________________ROOM 1____________________________________________//
     public List<Material> RoomTransMats_1 = new List<Material>(); // Transparent Materials of the Rooms 
     public List<Material> RoomMats_1 = new List<Material>(); // List of Room 1 Mats
     public Renderer[] rend_1; // Renderer for Room 1 solid objects
     public Renderer[] rend_1_1; // Renderers for Room 1 Trnasparent objects
 
+    //___________________________________ROOM 2____________________________________________//
     public List<Material> RoomTransMats_2 = new List<Material>(); // Transparent Materials of the Rooms
     public List<Material> RoomMats_2 = new List<Material>(); // List of Room 2 Mats 
     public Renderer[] rend_2; // Renderer for Room 2
     public Renderer[] rend_2_1; // Renderers for Room 1 Trnasparent objects
+
+    //___________________________________ROOM 3____________________________________________//
+    public List<Material> RoomTransMats_3 = new List<Material>(); // Transparent Materials of the Rooms
+    public List<Material> RoomMats_3 = new List<Material>(); // List of Room 2 Mats 
+    public Renderer[] rend_3; // Renderer for Room 2
+    public Renderer[] rend_3_1; // Renderers for Room 1 Trnasparent objects
+
+    //___________________________________ROOM 4____________________________________________//
+    public List<Material> RoomTransMats_4 = new List<Material>(); // Transparent Materials of the Rooms
+    public List<Material> RoomMats_4 = new List<Material>(); // List of Room 2 Mats 
+    public Renderer[] rend_4; // Renderer for Room 2
+    public Renderer[] rend_4_1; // Renderers for Room 1 Trnasparent objects
+
+    //___________________________________ROOM 5____________________________________________//
+    public List<Material> RoomTransMats_5 = new List<Material>(); // Transparent Materials of the Rooms
+    public List<Material> RoomMats_5 = new List<Material>(); // List of Room 2 Mats 
+    public Renderer[] rend_5; // Renderer for Room 2
+    public Renderer[] rend_5_1; // Renderers for Room 1 Trnasparent objects
+
+    //___________________________________ROOM 6____________________________________________//
+    public List<Material> RoomTransMats_6 = new List<Material>(); // Transparent Materials of the Rooms
+    public List<Material> RoomMats_6 = new List<Material>(); // List of Room 2 Mats 
+    public Renderer[] rend_6; // Renderer for Room 2
+    public Renderer[] rend_6_1; // Renderers for Room 1 Trnasparent objects
+
+    //___________________________________ROOM 7____________________________________________//
+    public List<Material> RoomTransMats_7 = new List<Material>(); // Transparent Materials of the Rooms
+    public List<Material> RoomMats_7 = new List<Material>(); // List of Room 2 Mats 
+    public Renderer[] rend_7; // Renderer for Room 2
+    public Renderer[] rend_7_1; // Renderers for Room 1 Trnasparent objects
+
+    private void Awake()
+    {
+        //______________REFERENCE_________//
+        // This is about making a reference to the different Room cameras that the Camera Manager is using for the Rooms so that I can acess them in this script
+        RoomCams_.Add(CamManager.RoomCams[0].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[1].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[2].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[3].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[3].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[4].GetComponent<Camera>());
+
+    }
 
     private void Start()
     {
@@ -81,14 +126,95 @@ public class FadeManager : MonoBehaviour
 
     private void Update()
     {
-        // Making Room 1 Transparent
-        if (Input.GetKeyDown(KeyCode.S))
+        Initiating();
+    }
+
+    void Initiating()
+    {
+        // Making Room 1 Visible all all other Rooms Transparent
+        if (RoomCams_[0].enabled == true) // Room Cam 1 Active
         {
+            RoomCounter = 2;
+            Debug.Log("TOFADING");
+            CamManager.CameraTransition();
+            ChangeToTransparent();
+            iTween.FadeTo(RoomsToFade[1], 0, 1);
+        }
+    
+        // Making Room 2 Visible and all other Rooms Transparent
+        if (RoomCams_[1].enabled == true) // Room Cam 2 Active
+        {
+            Debug.Log("TOFADING");
+            CamManager.CameraTransition();
             RoomCounter = 1;
             ChangeToTransparent();
             iTween.FadeTo(RoomsToFade[0], 0, 1);
             iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
         }
+
+        // Making Room 3 Visible and all other Rooms Transparent
+        if (RoomCams_[2].enabled == true) // Room Cam 3 Active
+        {
+            Debug.Log("TOFADING");
+            CamManager.CameraTransition();
+            RoomCounter = 1;
+            ChangeToTransparent();
+            iTween.FadeTo(RoomsToFade[0], 0, 1);
+            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+        }
+
+        // Making Room 4 Visible and all other Rooms Transparent
+        if (RoomCams_[3].enabled == true) // Room Cam 4 Active
+        {
+            Debug.Log("TOFADING");
+            CamManager.CameraTransition();
+            RoomCounter = 1;
+            ChangeToTransparent();
+            iTween.FadeTo(RoomsToFade[0], 0, 1);
+            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+        }
+
+        // Making Room 5 Visible and all other Rooms Transparent
+        if (RoomCams_[4].enabled == true) // Room Cam 5 Active
+        {
+            Debug.Log("TOFADING");
+            CamManager.CameraTransition();
+            RoomCounter = 1;
+            ChangeToTransparent();
+            iTween.FadeTo(RoomsToFade[0], 0, 1);
+            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+        }
+
+        // Making Room 6 Visible and all other Rooms Transparent
+        if (RoomCams_[5].enabled == true) // Room Cam 6 Active
+        {
+            Debug.Log("TOFADING");
+            CamManager.CameraTransition();
+            RoomCounter = 1;
+            ChangeToTransparent();
+            iTween.FadeTo(RoomsToFade[0], 0, 1);
+            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+        }
+
+        // Making Room 7 Visible and all other Rooms Transparent
+        if (RoomCams_[6].enabled == true) // Room Cam 7 Active
+        {
+            Debug.Log("TOFADING");
+            CamManager.CameraTransition();
+            RoomCounter = 1;
+            ChangeToTransparent();
+            iTween.FadeTo(RoomsToFade[0], 0, 1);
+            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+        }
+
+
+
+
+
+
+
+
+
         // Returning Room 1 to its normal state
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -98,27 +224,16 @@ public class FadeManager : MonoBehaviour
         }
 
 
-        // Making Room 2 Transparent 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            RoomCounter = 2;
-            ChangeToTransparent();
-            iTween.FadeTo(RoomsToFade[1], 0, 1);
-        }
-        // Returning Room 1 to its normal state
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            RoomCounter = 2;
-            iTween.FadeTo(RoomsToFade[1], 1, 2);
-            Invoke("ReturnToNormal", 2f);
-        }
-
     }
+
+
+
+
 
     // Function to change the objects initial material to transparent
     private void ChangeToTransparent()
     {
-        // Fading Room1 when the trigger button is pressed
+        // Fading Room 1 when the trigger button is pressed
         if (RoomCounter == 1)
         {
             foreach (Material item in RoomMats_1)
@@ -134,7 +249,7 @@ public class FadeManager : MonoBehaviour
                 item.EnableKeyword("_ALPHABLEND_ON");
                 item.renderQueue = 3000;
             }
-            // Room1 Transparent Materials
+            // Room 1 Transparent Materials
             foreach (Material item in RoomTransMats_1)
             {
                 Debug.Log("Testing ---------->>>");
@@ -150,8 +265,7 @@ public class FadeManager : MonoBehaviour
             }
         }
 
-
-        // Fading Room1 when the trigger button is pressed
+        // Fading Room 2 when the trigger button is pressed
         if (RoomCounter == 2)
         {
             foreach (Material item in RoomMats_2)
@@ -168,6 +282,117 @@ public class FadeManager : MonoBehaviour
                 item.renderQueue = 3000;
             }
         }
+
+        // Fading Room 3 when the trigger button is pressed
+        if (RoomCounter == 3)
+        {
+            foreach (Material item in RoomMats_2)
+            {
+                Debug.Log("Testing ---------->>>");
+
+                item.SetFloat("_Mode", 2);
+                item.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                item.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                item.SetInt("_ZWrite", 0);
+
+                item.DisableKeyword("_ALPHATEST_ON");
+                item.EnableKeyword("_ALPHABLEND_ON");
+                item.renderQueue = 3000;
+            }
+        }
+
+        // Fading Room 4 when the trigger button is pressed
+        if (RoomCounter == 4)
+        {
+            foreach (Material item in RoomMats_2)
+            {
+                Debug.Log("Testing ---------->>>");
+
+                item.SetFloat("_Mode", 2);
+                item.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                item.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                item.SetInt("_ZWrite", 0);
+
+                item.DisableKeyword("_ALPHATEST_ON");
+                item.EnableKeyword("_ALPHABLEND_ON");
+                item.renderQueue = 3000;
+            }
+        }
+
+        // Fading Room 5 when the trigger button is pressed
+        if (RoomCounter == 5)
+        {
+            foreach (Material item in RoomMats_2)
+            {
+                Debug.Log("Testing ---------->>>");
+
+                item.SetFloat("_Mode", 2);
+                item.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                item.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                item.SetInt("_ZWrite", 0);
+
+                item.DisableKeyword("_ALPHATEST_ON");
+                item.EnableKeyword("_ALPHABLEND_ON");
+                item.renderQueue = 3000;
+            }
+        }
+
+        // Fading Room 5 when the trigger button is pressed
+        if (RoomCounter == 5)
+        {
+            foreach (Material item in RoomMats_2)
+            {
+                Debug.Log("Testing ---------->>>");
+
+                item.SetFloat("_Mode", 2);
+                item.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                item.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                item.SetInt("_ZWrite", 0);
+
+                item.DisableKeyword("_ALPHATEST_ON");
+                item.EnableKeyword("_ALPHABLEND_ON");
+                item.renderQueue = 3000;
+            }
+        }
+
+        // Fading Room 6 when the trigger button is pressed
+        if (RoomCounter == 6)
+        {
+            foreach (Material item in RoomMats_2)
+            {
+                Debug.Log("Testing ---------->>>");
+
+                item.SetFloat("_Mode", 2);
+                item.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                item.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                item.SetInt("_ZWrite", 0);
+
+                item.DisableKeyword("_ALPHATEST_ON");
+                item.EnableKeyword("_ALPHABLEND_ON");
+                item.renderQueue = 3000;
+            }
+        }
+
+        // Fading Room 7 when the trigger button is pressed
+        if (RoomCounter == 7)
+        {
+            foreach (Material item in RoomMats_2)
+            {
+                Debug.Log("Testing ---------->>>");
+
+                item.SetFloat("_Mode", 2);
+                item.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                item.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                item.SetInt("_ZWrite", 0);
+
+                item.DisableKeyword("_ALPHATEST_ON");
+                item.EnableKeyword("_ALPHABLEND_ON");
+                item.renderQueue = 3000;
+            }
+        }
+
+
+
     }
 
     private void ReturnToNormal()
