@@ -37,6 +37,10 @@ public class CameraManager : MonoBehaviour
     //-------------------------------REFERENCED SCRIPTS-----------------------------------------//
     public GameObject Panel_FloorPlan_Panels;
     public DeactivatePan DeactPan_FloorPlan_Panels;
+
+    // Referencing the fading script
+    public FadeToCamPos FadeToCam;
+
     //__________________________________________________________________________________________//
 
     // Camera and initial camera empty position
@@ -203,7 +207,8 @@ public class CameraManager : MonoBehaviour
 
         if (CameraCount == 1)
         {
-            SubCam_[0].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
+            // Disabling the camera transition
+            // SubCam_[0].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
@@ -224,7 +229,8 @@ public class CameraManager : MonoBehaviour
         }
         else if (CameraCount == 2)
         {
-            SubCam_[1].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
+            // Disabling the camera transition
+            // SubCam_[1].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
@@ -244,7 +250,8 @@ public class CameraManager : MonoBehaviour
         }
         else if (CameraCount == 3)
         {
-            SubCam_[2].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
+            // Disabling the camera transition
+            // SubCam_[2].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
@@ -267,7 +274,8 @@ public class CameraManager : MonoBehaviour
         // Individual Room 1 Cameras, switching cameras 
         if (CameraCount == 11)
         {
-            RoomCam_[0].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
+            // Disabling the camera transition
+            // RoomCam_[0].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
@@ -288,7 +296,8 @@ public class CameraManager : MonoBehaviour
         // Individual Room 2 Cameras, switching cameras 
         else if (CameraCount == 12)
         {
-            RoomCam_[1].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
+            // Disabling the camera transition
+            //RoomCam_[1].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
@@ -309,7 +318,8 @@ public class CameraManager : MonoBehaviour
         // Individual Room 3 Cameras, switching cameras
         else if (CameraCount == 13)
         {
-            RoomCam_[2].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
+            // Disabling the camera transition
+            // RoomCam_[2].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
@@ -331,7 +341,8 @@ public class CameraManager : MonoBehaviour
         // Individual Room 4 Cameras, switching cameras
         else if (CameraCount == 14)
         {
-            RoomCam_[3].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
+            // Disabling the camera transition
+            // RoomCam_[3].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
@@ -352,7 +363,8 @@ public class CameraManager : MonoBehaviour
         // Individual Room 5 Cameras, switching cameras
         else if (CameraCount == 15)
         {
-            RoomCam_[4].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
+            // Disabling the camera transition
+            //RoomCam_[4].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
@@ -373,7 +385,8 @@ public class CameraManager : MonoBehaviour
         // Individual Room 6 Cameras, switching cameras
         else if (CameraCount == 16)
         {
-            RoomCam_[5].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
+            // Disabling the camera transition
+            // RoomCam_[5].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
@@ -395,7 +408,8 @@ public class CameraManager : MonoBehaviour
         // Individual Room 7 Cameras, switching cameras
         else if (CameraCount == 17)
         {
-            RoomCam_[6].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
+            // Disabling the camera transition
+            // RoomCam_[6].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
@@ -417,7 +431,8 @@ public class CameraManager : MonoBehaviour
         // Moving Back to the initial position
         else if (CameraCount == 10)
         {
-            MainCam_INS.transform.position = new Vector3(CurrentTransform.transform.position.x, CurrentTransform.transform.position.y, CurrentTransform.transform.position.z);
+            // Disabling the camera transition
+            // MainCam_INS.transform.position = new Vector3(CurrentTransform.transform.position.x, CurrentTransform.transform.position.y, CurrentTransform.transform.position.z);
 
             ActiveCamera.enabled = false;
 
@@ -492,20 +507,29 @@ public class CameraManager : MonoBehaviour
                         // Room 1
                         if (hit.collider.tag == "Room1")
                         {
+                            // I want the fade to start before this starts to change
+                            FadeToCam.RoomFadeOUT();
                             CameraCount = 11;
+                            FadeToCam.RoomFadeIN();
+
                         }
 
                         // Room 2
                         if (hit.collider.tag == "Room2")
                         {
+                            // I want the fade to start before this starts to change
+                            FadeToCam.RoomFadeOUT();
                             CameraCount = 12;
-
+                            FadeToCam.RoomFadeIN();
                         }
 
                         // Room 1
                         if (hit.collider.tag == "Room3")
                         {
+                            // I want the fade to start before this starts to change
+                            FadeToCam.RoomFadeOUT();
                             CameraCount = 13;
+                            FadeToCam.RoomFadeIN();
                         }
 
                     }
@@ -564,8 +588,11 @@ public class CameraManager : MonoBehaviour
     // This is going to be a revse transition back to the main camera's initial position
     public void ReverseTransition()
     {
+        // Fading Camera
+        FadeToCam.RoomFadeOUT();
         // Set the current transition point to the transition position of the main camera's
         CameraCount = 10;
+        FadeToCam.RoomFadeIN();
 
         // Setting this bool condition back to false to enable raycasting from this script
         DeactPan_FloorPlan_Panels.condition = false;

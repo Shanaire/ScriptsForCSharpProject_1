@@ -34,43 +34,43 @@ public class FadeManager : MonoBehaviour
     private List<Material> RoomTransMats_1 = new List<Material>(); // Transparent Materials of the Rooms 
     private List<Material> RoomMats_1 = new List<Material>(); // List of Room Mats
     private Renderer[] rend_1; // Renderer for Room solid objects
-    private Renderer[] rend_1_1; // Renderers for Room Trnasparent objects
+    //private Renderer[] rend_1_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 2____________________________________________//
     private List<Material> RoomTransMats_2 = new List<Material>(); // Transparent Materials of the Rooms
     private List<Material> RoomMats_2 = new List<Material>(); // List of Room Mats 
     private Renderer[] rend_2; // Renderer for Room
-    private Renderer[] rend_2_1; // Renderers for Room Trnasparent objects
+    //private Renderer[] rend_2_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 3____________________________________________//
     private List<Material> RoomTransMats_3 = new List<Material>(); // Transparent Materials of the Rooms
     private List<Material> RoomMats_3 = new List<Material>(); // List of Room Mats 
     private Renderer[] rend_3; // Renderer for Room
-    private Renderer[] rend_3_1; // Renderers for Room Trnasparent objects
+    //private Renderer[] rend_3_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 4____________________________________________//
     private List<Material> RoomTransMats_4 = new List<Material>(); // Transparent Materials of the Rooms
     private List<Material> RoomMats_4 = new List<Material>(); // List of Room Mats 
     private Renderer[] rend_4; // Renderer for Room
-    private Renderer[] rend_4_1; // Renderers for Room Trnasparent objects
+    //private Renderer[] rend_4_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 5____________________________________________//
     private List<Material> RoomTransMats_5 = new List<Material>(); // Transparent Materials of the Rooms
     private List<Material> RoomMats_5 = new List<Material>(); // List of Room Mats 
     private Renderer[] rend_5; // Renderer for Room
-    private Renderer[] rend_5_1; // Renderers for Room Trnasparent objects
+    //private Renderer[] rend_5_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 6____________________________________________//
     private List<Material> RoomTransMats_6 = new List<Material>(); // Transparent Materials of the Rooms
     private List<Material> RoomMats_6 = new List<Material>(); // List of Room Mats 
     private Renderer[] rend_6; // Renderer for Room 
-    private Renderer[] rend_6_1; // Renderers for Room Trnasparent objects
+    //private Renderer[] rend_6_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 7____________________________________________//
     private List<Material> RoomTransMats_7 = new List<Material>(); // Transparent Materials of Room
     private List<Material> RoomMats_7 = new List<Material>(); // List of Room Mats 
     private Renderer[] rend_7; // Renderer for Room 
-    private Renderer[] rend_7_1; // Renderers for Room  Trnasparent objects
+    //private Renderer[] rend_7_1; // Renderers for Room  Trnasparent objects
 
     private void Awake()
     {
@@ -103,14 +103,14 @@ public class FadeManager : MonoBehaviour
                 RoomMats_1.Add(item_2);
             }
         }
-        foreach (Renderer item in rend_1_1)
+        /*foreach (Renderer item in rend_1_1)
         {
             foreach (Material item_2 in item.materials)
             {
                 RoomTransMats_1.Add(item_2);
             }
         }
-
+        */
         //_________________ROOM 2____________________//
 
         // This function adds all the renders of the object in the selected game object to the array of renderers
@@ -125,14 +125,14 @@ public class FadeManager : MonoBehaviour
                 RoomMats_2.Add(item_2);
             }
         }
-        foreach (Renderer item in rend_2_1)
+        /*foreach (Renderer item in rend_2_1)
         {
             foreach (Material item_2 in item.materials)
             {
                 RoomTransMats_2.Add(item_2);
             }
         }
-
+        */
         //_________________ROOM 3____________________//
 
         // This function adds all the renders of the object in the selected game object to the array of renderers
@@ -147,14 +147,14 @@ public class FadeManager : MonoBehaviour
                 RoomMats_3.Add(item_2);
             }
         }
-        foreach (Renderer item in rend_3_1)
+        /*foreach (Renderer item in rend_3_1)
         {
             foreach (Material item_2 in item.materials)
             {
                 RoomTransMats_3.Add(item_2);
             }
         }
-
+        */
         //_________________ROOM 4____________________//
 
         // This function adds all the renders of the object in the selected game object to the array of renderers
@@ -169,14 +169,14 @@ public class FadeManager : MonoBehaviour
                 RoomMats_4.Add(item_2);
             }
         }
-        foreach (Renderer item in rend_4_1)
+        /*foreach (Renderer item in rend_4_1)
         {
             foreach (Material item_2 in item.materials)
             {
                 RoomTransMats_4.Add(item_2);
             }
         }
-
+        */
         //_________________ROOM 5____________________//
 
         // This function adds all the renders of the object in the selected game object to the array of renderers
@@ -191,14 +191,14 @@ public class FadeManager : MonoBehaviour
                 RoomMats_5.Add(item_2);
             }
         }
-        foreach (Renderer item in rend_5_1)
+        /*foreach (Renderer item in rend_5_1)
         {
             foreach (Material item_2 in item.materials)
             {
                 RoomTransMats_5.Add(item_2);
             }
         }
-
+        */
         //_________________ROOM 6____________________//
 
         // This function adds all the renders of the object in the selected game object to the array of renderers
@@ -213,14 +213,14 @@ public class FadeManager : MonoBehaviour
                 RoomMats_6.Add(item_2);
             }
         }
-        foreach (Renderer item in rend_6_1)
+        /*foreach (Renderer item in rend_6_1)
         {
             foreach (Material item_2 in item.materials)
             {
                 RoomTransMats_6.Add(item_2);
             }
         }
-
+        */
         //_________________ROOM 7____________________//
 
         // This function adds all the renders of the object in the selected game object to the array of renderers
@@ -235,13 +235,14 @@ public class FadeManager : MonoBehaviour
                 RoomMats_7.Add(item_2);
             }
         }
-        foreach (Renderer item in rend_7_1)
+        /*foreach (Renderer item in rend_7_1)
         {
             foreach (Material item_2 in item.materials)
             {
                 RoomTransMats_7.Add(item_2);
             }
         }
+        */
     }
 
     private void Update()

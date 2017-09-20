@@ -57,26 +57,25 @@ public class FadeToCamPos : MonoBehaviour
     }
     private void Update()
     {
-        FadeCamera();
-    }
-
-    void FadeCamera()
-    {
-        if (tag == "Room1")
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Fade(true, 10f);
-            }
-        }
-
-
         FadeTransition();
-
     }
+
+    public void RoomFadeOUT()
+    {
+        Debug.Log("Fading Transition");
+        Fade(true, .5f);
+    }
+
+    public void RoomFadeIN()
+    {
+        Debug.Log("Fading Transition");
+        Fade(false, .5f);
+    }
+
 
     void FadeTransition()
     {
+        // Controls the Transition from Alpha 0 to Alpha 1
         if (!isInTransition)
             return;
         transition += (isShowing) ? Time.deltaTime * (1 / duration) : -Time.deltaTime * (1 / duration);
