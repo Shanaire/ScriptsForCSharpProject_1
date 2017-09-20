@@ -5,6 +5,20 @@ using UnityEngine.UI;
 
 public class FadeToCamPos : MonoBehaviour
 {
+    /* 
+     * This script is to be used to fade the camera when the camera switch is about to happen
+     * 
+     * 
+     */
+
+
+    //_________________________________REFERENCED FILES______________________________//
+
+    public CameraManager CamManager;
+    private List<Camera> RoomCams_ = new List<Camera>();
+
+    //_______________________________________________________________________________//
+
     public static FadeToCamPos Instance { set; get; }
 
     public Image FadeImage;
@@ -18,7 +32,22 @@ public class FadeToCamPos : MonoBehaviour
         Instance = this;
     }
 
-    public void Fade (bool showing, float duration)
+    private void Start()
+    {
+        //______________REFERENCE_________//
+        // This is about making a reference to the different Room cameras that the Camera Manager is using for the Rooms so that I can acess them in this script
+        RoomCams_.Add(CamManager.RoomCams[0].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[1].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[2].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[3].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[4].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[5].GetComponent<Camera>());
+        RoomCams_.Add(CamManager.RoomCams[6].GetComponent<Camera>());
+        //______________________________________________//
+    }
+
+
+    public void Fade(bool showing, float duration)
     {
         isShowing = showing;
         isInTransition = true;
@@ -28,15 +57,26 @@ public class FadeToCamPos : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        FadeCamera();
+    }
+
+    void FadeCamera()
+    {
+        if (tag == "Room1")
         {
-            Fade(true, 1.25f);
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Fade(false, 1.25f);
+            if (Input.GetMouseButtonDown(0))
+            {
+                Fade(true, 10f);
+            }
         }
 
+
+        FadeTransition();
+
+    }
+
+    void FadeTransition()
+    {
         if (!isInTransition)
             return;
         transition += (isShowing) ? Time.deltaTime * (1 / duration) : -Time.deltaTime * (1 / duration);
