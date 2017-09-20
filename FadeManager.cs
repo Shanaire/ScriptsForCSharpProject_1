@@ -32,45 +32,45 @@ public class FadeManager : MonoBehaviour
     // Accessing the material states of the materials
     //___________________________________ROOM 1____________________________________________//
     public List<Material> RoomTransMats_1 = new List<Material>(); // Transparent Materials of the Rooms 
-    public List<Material> RoomMats_1 = new List<Material>(); // List of Room 1 Mats
-    public Renderer[] rend_1; // Renderer for Room 1 solid objects
-    public Renderer[] rend_1_1; // Renderers for Room 1 Trnasparent objects
+    public List<Material> RoomMats_1 = new List<Material>(); // List of Room Mats
+    public Renderer[] rend_1; // Renderer for Room solid objects
+    public Renderer[] rend_1_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 2____________________________________________//
     public List<Material> RoomTransMats_2 = new List<Material>(); // Transparent Materials of the Rooms
-    public List<Material> RoomMats_2 = new List<Material>(); // List of Room 2 Mats 
-    public Renderer[] rend_2; // Renderer for Room 2
-    public Renderer[] rend_2_1; // Renderers for Room 1 Trnasparent objects
+    public List<Material> RoomMats_2 = new List<Material>(); // List of Room Mats 
+    public Renderer[] rend_2; // Renderer for Room
+    public Renderer[] rend_2_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 3____________________________________________//
     public List<Material> RoomTransMats_3 = new List<Material>(); // Transparent Materials of the Rooms
-    public List<Material> RoomMats_3 = new List<Material>(); // List of Room 2 Mats 
-    public Renderer[] rend_3; // Renderer for Room 2
-    public Renderer[] rend_3_1; // Renderers for Room 1 Trnasparent objects
+    public List<Material> RoomMats_3 = new List<Material>(); // List of Room Mats 
+    public Renderer[] rend_3; // Renderer for Room
+    public Renderer[] rend_3_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 4____________________________________________//
     public List<Material> RoomTransMats_4 = new List<Material>(); // Transparent Materials of the Rooms
-    public List<Material> RoomMats_4 = new List<Material>(); // List of Room 2 Mats 
-    public Renderer[] rend_4; // Renderer for Room 2
-    public Renderer[] rend_4_1; // Renderers for Room 1 Trnasparent objects
+    public List<Material> RoomMats_4 = new List<Material>(); // List of Room Mats 
+    public Renderer[] rend_4; // Renderer for Room
+    public Renderer[] rend_4_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 5____________________________________________//
     public List<Material> RoomTransMats_5 = new List<Material>(); // Transparent Materials of the Rooms
-    public List<Material> RoomMats_5 = new List<Material>(); // List of Room 2 Mats 
-    public Renderer[] rend_5; // Renderer for Room 2
-    public Renderer[] rend_5_1; // Renderers for Room 1 Trnasparent objects
+    public List<Material> RoomMats_5 = new List<Material>(); // List of Room Mats 
+    public Renderer[] rend_5; // Renderer for Room
+    public Renderer[] rend_5_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 6____________________________________________//
     public List<Material> RoomTransMats_6 = new List<Material>(); // Transparent Materials of the Rooms
-    public List<Material> RoomMats_6 = new List<Material>(); // List of Room 2 Mats 
-    public Renderer[] rend_6; // Renderer for Room 2
-    public Renderer[] rend_6_1; // Renderers for Room 1 Trnasparent objects
+    public List<Material> RoomMats_6 = new List<Material>(); // List of Room Mats 
+    public Renderer[] rend_6; // Renderer for Room 
+    public Renderer[] rend_6_1; // Renderers for Room Trnasparent objects
 
     //___________________________________ROOM 7____________________________________________//
-    public List<Material> RoomTransMats_7 = new List<Material>(); // Transparent Materials of the Rooms
-    public List<Material> RoomMats_7 = new List<Material>(); // List of Room 2 Mats 
-    public Renderer[] rend_7; // Renderer for Room 2
-    public Renderer[] rend_7_1; // Renderers for Room 1 Trnasparent objects
+    public List<Material> RoomTransMats_7 = new List<Material>(); // Transparent Materials of Room
+    public List<Material> RoomMats_7 = new List<Material>(); // List of Room Mats 
+    public Renderer[] rend_7; // Renderer for Room 
+    public Renderer[] rend_7_1; // Renderers for Room  Trnasparent objects
 
     private void Awake()
     {
@@ -82,16 +82,17 @@ public class FadeManager : MonoBehaviour
         RoomCams_.Add(CamManager.RoomCams[3].GetComponent<Camera>());
         RoomCams_.Add(CamManager.RoomCams[3].GetComponent<Camera>());
         RoomCams_.Add(CamManager.RoomCams[4].GetComponent<Camera>());
+        //______________________________________________//
 
     }
 
     private void Start()
     {
-        //_________________ROOM1____________________//
+        //_________________ROOM 1____________________//
 
         // This function adds all the renders of the object in the selected game object to the array of renderers
         rend_1 = RoomsToFade[0].GetComponentsInChildren<Renderer>();
-        rend_1_1 = RoomsTranspToFade[0].GetComponentsInChildren<Renderer>();
+        //rend_1_1 = RoomsTranspToFade[0].GetComponentsInChildren<Renderer>();
 
         // This then loops through the array and add each of the materials to the list of materials.
         foreach (Renderer item in rend_1)
@@ -109,10 +110,11 @@ public class FadeManager : MonoBehaviour
             }
         }
 
+        //_________________ROOM 2____________________//
 
-        //__________________ROOM2_____________________//
         // This function adds all the renders of the object in the selected game object to the array of renderers
         rend_2 = RoomsToFade[1].GetComponentsInChildren<Renderer>();
+        //rend_2_1 = RoomsTranspToFade[1].GetComponentsInChildren<Renderer>();
 
         // This then loops through the array and add each of the materials to the list of materials.
         foreach (Renderer item in rend_2)
@@ -120,6 +122,123 @@ public class FadeManager : MonoBehaviour
             foreach (Material item_2 in item.materials)
             {
                 RoomMats_2.Add(item_2);
+            }
+        }
+        foreach (Renderer item in rend_2_1)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomTransMats_2.Add(item_2);
+            }
+        }
+
+        //_________________ROOM 3____________________//
+
+        // This function adds all the renders of the object in the selected game object to the array of renderers
+        rend_3 = RoomsToFade[2].GetComponentsInChildren<Renderer>();
+        //rend_3_1 = RoomsTranspToFade[2].GetComponentsInChildren<Renderer>();
+
+        // This then loops through the array and add each of the materials to the list of materials.
+        foreach (Renderer item in rend_3)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomMats_3.Add(item_2);
+            }
+        }
+        foreach (Renderer item in rend_3_1)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomTransMats_3.Add(item_2);
+            }
+        }
+
+        //_________________ROOM 4____________________//
+
+        // This function adds all the renders of the object in the selected game object to the array of renderers
+        rend_4 = RoomsToFade[3].GetComponentsInChildren<Renderer>();
+        //rend_4_1 = RoomsTranspToFade[3].GetComponentsInChildren<Renderer>();
+
+        // This then loops through the array and add each of the materials to the list of materials.
+        foreach (Renderer item in rend_4)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomMats_4.Add(item_2);
+            }
+        }
+        foreach (Renderer item in rend_4_1)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomTransMats_4.Add(item_2);
+            }
+        }
+
+        //_________________ROOM 5____________________//
+
+        // This function adds all the renders of the object in the selected game object to the array of renderers
+        rend_5 = RoomsToFade[4].GetComponentsInChildren<Renderer>();
+        //rend_5_1 = RoomsTranspToFade[4].GetComponentsInChildren<Renderer>();
+
+        // This then loops through the array and add each of the materials to the list of materials.
+        foreach (Renderer item in rend_5)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomMats_5.Add(item_2);
+            }
+        }
+        foreach (Renderer item in rend_5_1)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomTransMats_5.Add(item_2);
+            }
+        }
+
+        //_________________ROOM 6____________________//
+
+        // This function adds all the renders of the object in the selected game object to the array of renderers
+        rend_6 = RoomsToFade[5].GetComponentsInChildren<Renderer>();
+        //rend_6_1 = RoomsTranspToFade[5].GetComponentsInChildren<Renderer>();
+
+        // This then loops through the array and add each of the materials to the list of materials.
+        foreach (Renderer item in rend_6)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomMats_6.Add(item_2);
+            }
+        }
+        foreach (Renderer item in rend_6_1)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomTransMats_6.Add(item_2);
+            }
+        }
+
+        //_________________ROOM 7____________________//
+
+        // This function adds all the renders of the object in the selected game object to the array of renderers
+        rend_7 = RoomsToFade[6].GetComponentsInChildren<Renderer>();
+        //rend_7_1 = RoomsTranspToFade[6].GetComponentsInChildren<Renderer>();
+
+        // This then loops through the array and add each of the materials to the list of materials.
+        foreach (Renderer item in rend_7)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomMats_7.Add(item_2);
+            }
+        }
+        foreach (Renderer item in rend_7_1)
+        {
+            foreach (Material item_2 in item.materials)
+            {
+                RoomTransMats_7.Add(item_2);
             }
         }
     }
@@ -139,6 +258,11 @@ public class FadeManager : MonoBehaviour
             CamManager.CameraTransition();
             ChangeToTransparent();
             iTween.FadeTo(RoomsToFade[1], 0, 1);
+            iTween.FadeTo(RoomsToFade[2], 0, 1);
+            iTween.FadeTo(RoomsToFade[3], 0, 1);
+            iTween.FadeTo(RoomsToFade[4], 0, 1);
+            iTween.FadeTo(RoomsToFade[5], 0, 1);
+            iTween.FadeTo(RoomsToFade[6], 0, 1);
         }
     
         // Making Room 2 Visible and all other Rooms Transparent
@@ -149,7 +273,11 @@ public class FadeManager : MonoBehaviour
             RoomCounter = 1;
             ChangeToTransparent();
             iTween.FadeTo(RoomsToFade[0], 0, 1);
-            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+            iTween.FadeTo(RoomsToFade[2], 0, 1);
+            iTween.FadeTo(RoomsToFade[3], 0, 1);
+            iTween.FadeTo(RoomsToFade[4], 0, 1);
+            iTween.FadeTo(RoomsToFade[5], 0, 1);
+            iTween.FadeTo(RoomsToFade[6], 0, 1);
         }
 
         // Making Room 3 Visible and all other Rooms Transparent
@@ -160,7 +288,11 @@ public class FadeManager : MonoBehaviour
             RoomCounter = 1;
             ChangeToTransparent();
             iTween.FadeTo(RoomsToFade[0], 0, 1);
-            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+            iTween.FadeTo(RoomsToFade[1], 0, 1);
+            iTween.FadeTo(RoomsToFade[3], 0, 1);
+            iTween.FadeTo(RoomsToFade[4], 0, 1);
+            iTween.FadeTo(RoomsToFade[5], 0, 1);
+            iTween.FadeTo(RoomsToFade[6], 0, 1);
         }
 
         // Making Room 4 Visible and all other Rooms Transparent
@@ -171,7 +303,11 @@ public class FadeManager : MonoBehaviour
             RoomCounter = 1;
             ChangeToTransparent();
             iTween.FadeTo(RoomsToFade[0], 0, 1);
-            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+            iTween.FadeTo(RoomsToFade[1], 0, 1);
+            iTween.FadeTo(RoomsToFade[2], 0, 1);
+            iTween.FadeTo(RoomsToFade[4], 0, 1);
+            iTween.FadeTo(RoomsToFade[5], 0, 1);
+            iTween.FadeTo(RoomsToFade[6], 0, 1);
         }
 
         // Making Room 5 Visible and all other Rooms Transparent
@@ -182,7 +318,11 @@ public class FadeManager : MonoBehaviour
             RoomCounter = 1;
             ChangeToTransparent();
             iTween.FadeTo(RoomsToFade[0], 0, 1);
-            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+            iTween.FadeTo(RoomsToFade[1], 0, 1);
+            iTween.FadeTo(RoomsToFade[2], 0, 1);
+            iTween.FadeTo(RoomsToFade[3], 0, 1);
+            iTween.FadeTo(RoomsToFade[5], 0, 1);
+            iTween.FadeTo(RoomsToFade[6], 0, 1);
         }
 
         // Making Room 6 Visible and all other Rooms Transparent
@@ -193,7 +333,11 @@ public class FadeManager : MonoBehaviour
             RoomCounter = 1;
             ChangeToTransparent();
             iTween.FadeTo(RoomsToFade[0], 0, 1);
-            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+            iTween.FadeTo(RoomsToFade[1], 0, 1);
+            iTween.FadeTo(RoomsToFade[2], 0, 1);
+            iTween.FadeTo(RoomsToFade[3], 0, 1);
+            iTween.FadeTo(RoomsToFade[4], 0, 1);
+            iTween.FadeTo(RoomsToFade[6], 0, 1);
         }
 
         // Making Room 7 Visible and all other Rooms Transparent
@@ -204,7 +348,11 @@ public class FadeManager : MonoBehaviour
             RoomCounter = 1;
             ChangeToTransparent();
             iTween.FadeTo(RoomsToFade[0], 0, 1);
-            iTween.FadeTo(RoomsTranspToFade[0], 0, 1);
+            iTween.FadeTo(RoomsToFade[1], 0, 1);
+            iTween.FadeTo(RoomsToFade[2], 0, 1);
+            iTween.FadeTo(RoomsToFade[3], 0, 1);
+            iTween.FadeTo(RoomsToFade[4], 0, 1);
+            iTween.FadeTo(RoomsToFade[5], 0, 1);
         }
 
 
