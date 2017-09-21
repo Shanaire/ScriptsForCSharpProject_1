@@ -20,8 +20,7 @@ public class MouseHover : MonoBehaviour
 
 
     //_________________________________________REFERENCED FILES_____________________________//
-    public GameObject CameraManagerObject;
-    private CameraManager _CameraManagerObject;
+    public CameraManager _CameraManagerObject;
 
     public List<GameObject> cPanel_2 = new List<GameObject>();
 
@@ -39,8 +38,6 @@ public class MouseHover : MonoBehaviour
     {
         render = GetComponent<Renderer>();
         render.enabled = true;
-
-        _CameraManagerObject = CameraManagerObject.gameObject.GetComponent<CameraManager>();
     }
 
     private void OnMouseEnter()
@@ -50,7 +47,7 @@ public class MouseHover : MonoBehaviour
          * */
 
         // When this centre panel is active i.e true, this is when the mouse hover needs to be disabled. Therefore this is disabling the mouse hover.
-        if (cPanel_2[0].activeSelf == true || cPanel_2[1].activeSelf == true || cPanel_2[2].activeSelf == true || cPanel_2[3].activeSelf == true)
+        if (cPanel_2[0].activeSelf == true || cPanel_2[1].activeSelf == true || cPanel_2[2].activeSelf == true || cPanel_2[3].activeSelf == true || cPanel_2[4].activeSelf == true)
         {
             InitialColor = render.material.color;
             Selected = InitialColor;
@@ -424,7 +421,7 @@ public class MouseHover : MonoBehaviour
         else
         {
             // By making this function true, it is going to be used to disable the raycast function.
-            _CameraManagerObject.DeactPan_FloorPlan_Panels.condition = true;
+            _CameraManagerObject.BoolForCenPan.panelCondition = true;
 
             // SubSection 1
             if ((tag == "Room1") || (tag == "Room2") || (tag == "Room3"))

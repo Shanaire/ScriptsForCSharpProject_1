@@ -14,8 +14,6 @@ public class DeactivatePan : MonoBehaviour
 
 
     //_________________________________________________________________________________//
-    // Referencing the centre panels
-    public List<GameObject> cPanels = new List<GameObject>();
 
     // This is the GameObject of the map panel.
     public GameObject Panel_1;
@@ -24,7 +22,7 @@ public class DeactivatePan : MonoBehaviour
 
     public void OnorOff()
     {
-        if (condition == true && Panel_1.activeSelf == false)
+        if (Panel_1.activeSelf == false)
         {
             Panel_1.SetActive(true);
             condition = true;
@@ -32,10 +30,10 @@ public class DeactivatePan : MonoBehaviour
             //Debug.Log("___WORKING___");
 
         }
-        else if (condition == true && (cPanels[0].activeSelf == true || cPanels[1].activeSelf == true || cPanels[2].activeSelf == true || cPanels[3].activeSelf == true))
+        else if (condition == true && Panel_1.activeSelf == true)
         {
             Panel_1.SetActive(false);
-            condition = true;
+            condition = false;
             Debug.Log("____WORKING____");
         }
         else

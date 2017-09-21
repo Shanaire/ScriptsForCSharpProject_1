@@ -35,8 +35,7 @@ public class CameraManager : MonoBehaviour
 
 
     //-------------------------------REFERENCED SCRIPTS-----------------------------------------//
-    public GameObject Panel_FloorPlan_Panels;
-    public DeactivatePan DeactPan_FloorPlan_Panels;
+    public BoolForCentrePanels BoolForCenPan;
 
     // Referencing the fading script
     public FadeToCamPos FadeToCam;
@@ -461,17 +460,17 @@ public class CameraManager : MonoBehaviour
         RaycastHit hit;
         Ray RayToObject = new Ray(mousePosN, mousePosF);
 
-        DeactPan_FloorPlan_Panels = Panel_FloorPlan_Panels.GetComponent<DeactivatePan>();
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (DeactPan_FloorPlan_Panels.condition == true)
+            Debug.Log("Condition Status" + BoolForCenPan.panelCondition);
+            if (BoolForCenPan.panelCondition == true)
             {
                 Physics.Raycast(RayToObject, 0f);
                 Debug.Log("Checking");
             }
 
-            else if (DeactPan_FloorPlan_Panels.condition == false)
+            else if (BoolForCenPan.panelCondition == false)
             {
                 {
                     Debug.DrawRay(mousePosN, mousePosF, Color.green);
@@ -536,46 +535,47 @@ public class CameraManager : MonoBehaviour
                             FadeToCam.RoomFadeIN();
                         }
 
-                    }
-                    // Subsection 2 changing to one of the room cameras
-                    else if (CameraCount == 2)
-                    {
-                        // Room 4
-                        if (MainCam == SubCams[1])
-                        {
-                            if (hit.collider.transform.tag == "Room4")
-                            {
-                                CameraCount = 14;
-                            }
-                        }
 
-                        // Room 5
-                        if (MainCam == SubCams[1])
+                        // Subsection 2 changing to one of the room cameras
+                        else if (CameraCount == 2)
                         {
-                            if (hit.collider.transform.tag == "Room5")
+                            // Room 4
+                            if (MainCam == SubCams[1])
                             {
-                                CameraCount = 15;
+                                if (hit.collider.transform.tag == "Room4")
+                                {
+                                    CameraCount = 14;
+                                }
                             }
-                        }
 
-                        // Room 6
-                        if (MainCam == SubCams[1])
-                        {
-                            if (hit.collider.transform.tag == "Room6")
+                            // Room 5
+                            if (MainCam == SubCams[1])
                             {
-                                CameraCount = 16;
+                                if (hit.collider.transform.tag == "Room5")
+                                {
+                                    CameraCount = 15;
+                                }
+                            }
+
+                            // Room 6
+                            if (MainCam == SubCams[1])
+                            {
+                                if (hit.collider.transform.tag == "Room6")
+                                {
+                                    CameraCount = 16;
+                                }
                             }
                         }
-                    }
-                    // Subsection 3 changing to one of the room cameras
-                    else if (CameraCount == 3)
-                    {
-                        // Room 7
-                        if (MainCam == SubCams[2])
+                        // Subsection 3 changing to one of the room cameras
+                        else if (CameraCount == 3)
                         {
-                            if (hit.collider.transform.tag == "Room7")
+                            // Room 7
+                            if (MainCam == SubCams[2])
                             {
-                                CameraCount = 17;
+                                if (hit.collider.transform.tag == "Room7")
+                                {
+                                    CameraCount = 17;
+                                }
                             }
                         }
                     }
@@ -584,11 +584,11 @@ public class CameraManager : MonoBehaviour
                     {
                         Debug.Log("Nothing Clicked");
                     }
+
                 }
             }
         }
     }
-
     // This is going to be a revse transition back to the main camera's initial position
     public void ReverseTransition()
     {
@@ -599,7 +599,7 @@ public class CameraManager : MonoBehaviour
         FadeToCam.RoomFadeIN();
 
         // Setting this bool condition back to false to enable raycasting from this script
-        DeactPan_FloorPlan_Panels.condition = false;
+        BoolForCenPan.panelCondition = false;
         Debug.Log("Reverse");
         //currentView = InitialCamPosition;
     }
