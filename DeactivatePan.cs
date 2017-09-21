@@ -10,12 +10,14 @@ public class DeactivatePan : MonoBehaviour
      */
 
     //_______________________________REFERENCED FILES__________________________________//
-    public List<GameObject> cPanels = new List<GameObject>();
+
 
 
     //_________________________________________________________________________________//
+    // Referencing the centre panels
+    public List<GameObject> cPanels = new List<GameObject>();
 
-
+    // This is the GameObject of the map panel.
     public GameObject Panel_1;
 
     public bool condition = false || true;

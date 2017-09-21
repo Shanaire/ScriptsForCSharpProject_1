@@ -494,13 +494,17 @@ public class CameraManager : MonoBehaviour
                         // Casting a Ray for SubSection 2 and changing the Camera Count
                         if ((hit.collider.transform.tag == "Room4") || (hit.collider.transform.tag == "Room5") || (hit.collider.transform.tag == "Room6"))
                         {
+                            FadeToCam.RoomFadeOUT();
                             CameraCount = 2;
+                            FadeToCam.RoomFadeIN();
                         }
 
                         // Casting a Ray for SubSection 3 and changing the Camera Count
                         if (hit.collider.tag == "Room7")
                         {
+                            FadeToCam.RoomFadeOUT();
                             CameraCount = 3;
+                            FadeToCam.RoomFadeIN();
                         }
 
                         // Casting a Ray for the individual Room1 etc given the relevant sub camera is activated

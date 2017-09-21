@@ -15,18 +15,15 @@ public class DeactivateCentrePanelControl : MonoBehaviour
 
 
     //__________________________________REFERENCED FILES_________________________________//
+    // The actual panel objects
     public GameObject cPanel;
+    // Boolean for the active objects
     private BoolForCentrePanels _cPanelBool;
 
-    public GameObject FloorplanPanel;
-    private DeactivatePan _DeactivatePan;
-
-    public List<GameObject> FloorsToHighlight = new List<GameObject>();
+    // Referencing the script to disable the raycasting on the floor
+    public DeactivatePan _DeactivatePan;
 
     //___________________________________________________________________________________//
-
-    // This button shou
-    //public GameObject cPanel_Active;
 
     // A light of panel that are going be deactivated
     public List<GameObject> cPanel_Deactivate = new List<GameObject>();
@@ -34,46 +31,39 @@ public class DeactivateCentrePanelControl : MonoBehaviour
     private void Start()
     {
         _cPanelBool = cPanel.gameObject.GetComponent<BoolForCentrePanels>();
-        _DeactivatePan = FloorplanPanel.gameObject.GetComponent<DeactivatePan>();
     }
 
 
 
     public void CPanelToggle()
     {
-        if (cPanel.activeSelf == true && FloorplanPanel.activeSelf != false)
+        // This cPanel is if the gameObject is active, rather than the script
+        if (_cPanelBool.panelCondition == false)
         {
+            Debug.Log("---CHANGING STATUS---" + _cPanelBool.panelCondition);
+
+            cPanel.gameObject.SetActive(false);
+            _DeactivatePan.condition = false;
             _cPanelBool.panelCondition = true;
 
-            Debug.Log("__WORKING__");
         }
-        else
+        else if (_cPanelBool.panelCondition == true)
         {
-            if (_cPanelBool.panelCondition == false)
-            {
-                Debug.Log("---CHANGING STATUS---" + _cPanelBool.panelCondition);
+            Debug.Log("---CHANGING STATUS---" + _cPanelBool.panelCondition);
 
+            cPanel.gameObject.SetActive(true);
 
-                _DeactivatePan.condition = false;
-                cPanel.gameObject.SetActive(false);
-                _cPanelBool.panelCondition = true;
-            }
-            else if (_cPanelBool.panelCondition == true)
-            {
-                Debug.Log("---CHANGING STATUS---" + _cPanelBool.panelCondition);
+            _DeactivatePan.condition = true;
 
-                _DeactivatePan.condition = true;
-                cPanel.gameObject.SetActive(true);
+            // Setting all gameobjects in the list to inactive
+            foreach (GameObject item in cPanel_Deactivate)
+                item.SetActive(false);
 
-                // Setting all gameobjects in the list to inactive
-                foreach (GameObject item in cPanel_Deactivate)
-                    item.SetActive(false);
-
-                _cPanelBool.panelCondition = false;
-            }
+            _cPanelBool.panelCondition = false;
         }
     }
 }
+
 
 
 

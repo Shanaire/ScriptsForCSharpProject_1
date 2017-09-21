@@ -75,7 +75,7 @@ public class ButtonPress : MonoBehaviour
             // Add an if statement for each of the separate rooms
             FadeToCam.RoomFadeOUT();
             CamMan_1.CameraCount = 14;
-            FadeToCam.RoomFadeOUT();
+            FadeToCam.RoomFadeIN();
             FloorPlanPanel.SetActive(false);
 
             Debug.Log("Change Room Test");
@@ -87,7 +87,7 @@ public class ButtonPress : MonoBehaviour
             // Add an if statement for each of the separate rooms
             FadeToCam.RoomFadeOUT();
             CamMan_1.CameraCount = 15;
-            FadeToCam.RoomFadeOUT();
+            FadeToCam.RoomFadeIN();
             FloorPlanPanel.SetActive(false);
 
             Debug.Log("Change Room Test");
@@ -99,7 +99,7 @@ public class ButtonPress : MonoBehaviour
             // Add an if statement for each of the separate rooms
             FadeToCam.RoomFadeOUT();
             CamMan_1.CameraCount = 16;
-            FadeToCam.RoomFadeOUT();
+            FadeToCam.RoomFadeIN();
             FloorPlanPanel.SetActive(false);
 
             Debug.Log("Change Room Test");
