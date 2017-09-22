@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MeshCombiner : MonoBehaviour
@@ -21,11 +20,10 @@ public class MeshCombiner : MonoBehaviour
      * 
      */
 
-    private Mesh finalMesh;
-    private MeshFilter myMeshFilter = new MeshFilter();
 
     public void AdvanceMeshCombine()
     {
+        MeshFilter myMeshFilter = new MeshFilter();
         // Getting the previous position and rotation so that it can be applied to the newly created objects
         Quaternion oldRot = transform.rotation;
         Vector3 oldPos = transform.position;
@@ -113,9 +111,10 @@ public class MeshCombiner : MonoBehaviour
         }
         Mesh finalMesh_2 = new Mesh();
         finalMesh_2.CombineMeshes(finalCombiners.ToArray(), false);
-        MeshFilter myMeshFilter = new MeshFilter();
+
         myMeshFilter.sharedMesh = finalMesh_2;
-        Debug.Log("Final mesh has" + submeshes.Count + " materials.");
+
+        //Debug.Log("Final mesh has" + submeshes.Count + " materials.");
 
 
         transform.rotation = oldRot;
@@ -127,16 +126,7 @@ public class MeshCombiner : MonoBehaviour
 
     public void CombineMeshes()
     {
-        finalMesh = myMeshFilter.sharedMesh;
-        if (finalMesh == null)
-        {
-            Mesh finalMesh = new Mesh();
-            myMeshFilter.sharedMesh = finalMesh;
-        }
-        else
-        {
-            finalMesh.Clear();
-        }
+        MeshFilter myMeshFilter = new MeshFilter();
 
         // Getting the previous position and rotation so that it can be applied to the newly created objects
         Quaternion oldRot = transform.rotation;
@@ -174,7 +164,7 @@ public class MeshCombiner : MonoBehaviour
             combiners.Add(ci);
         }
 
-
+        Mesh finalMesh = new Mesh();
         // Adding all the meshes into the final mesh.
         finalMesh.CombineMeshes(combiners.ToArray(), true);
 
