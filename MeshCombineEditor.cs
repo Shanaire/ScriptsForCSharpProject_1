@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor (typeof(MeshCombiner))]
+[CustomEditor(typeof(MeshCombiner))]
 
-public class MeshCombineEditor : Editor {
+public class MeshCombineEditor : Editor
+{
 
-    private void OnSceneGUI()
+    public override void OnInspectorGUI()
     {
         MeshCombiner mc = target as MeshCombiner;
 
-        if (Handles.Button (mc.transform.position + Vector3.up*5, Quaternion.LookRotation(Vector3.up), 1,1, Handles.CylinderCap))
+        if (GUILayout.Button("Normal Combine Meshes"))
         {
             mc.CombineMeshes();
         }
+        if (GUILayout.Button("Multiple Materials Combination"))
+        {
+            mc.AdvanceMeshCombine();
+        }
     }
-
 }
+
