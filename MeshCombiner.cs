@@ -23,7 +23,10 @@ public class MeshCombiner : MonoBehaviour
 
     public void AdvanceMeshCombine()
     {
+        // This is getting the MeshFilter component of the parent gameobject and storing it in myMeshFilter
         MeshFilter myMeshFilter = new MeshFilter();
+        myMeshFilter = GetComponent<MeshFilter>();
+
         // Getting the previous position and rotation so that it can be applied to the newly created objects
         Quaternion oldRot = transform.rotation;
         Vector3 oldPos = transform.position;
@@ -112,6 +115,7 @@ public class MeshCombiner : MonoBehaviour
         Mesh finalMesh_2 = new Mesh();
         finalMesh_2.CombineMeshes(finalCombiners.ToArray(), false);
 
+
         myMeshFilter.sharedMesh = finalMesh_2;
 
         //Debug.Log("Final mesh has" + submeshes.Count + " materials.");
@@ -120,13 +124,20 @@ public class MeshCombiner : MonoBehaviour
         transform.rotation = oldRot;
         transform.position = oldPos;
 
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+
     }
 
 
 
     public void CombineMeshes()
     {
+        // This is getting the MeshFilter component of the parent gameobject and storing it in myMeshFilter
         MeshFilter myMeshFilter = new MeshFilter();
+        myMeshFilter = GetComponent<MeshFilter>();
 
         // Getting the previous position and rotation so that it can be applied to the newly created objects
         Quaternion oldRot = transform.rotation;
@@ -169,7 +180,7 @@ public class MeshCombiner : MonoBehaviour
         finalMesh.CombineMeshes(combiners.ToArray(), true);
 
         // This is getting the parent mesh filter and displaying it.
-        GetComponent<MeshFilter>().sharedMesh = finalMesh;
+        myMeshFilter.sharedMesh = finalMesh;
 
         transform.rotation = oldRot;
         transform.position = oldPos;
