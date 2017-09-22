@@ -15,15 +15,25 @@ public class MeshCombiner : MonoBehaviour
      *      The gameObject will need the mesh renderer script and the the mesh filter script.
      *      When the button is pressed the new objects will be added to the filter of that game object.
      * 
+     * Find away to Add the names of the respected material
+     * 
      * NEED TO WORK ON THE 65K VERTS LIMITATION 
      * 
      */
 
     private Mesh finalMesh;
-    private MeshFilter myMeshFilter;
+    private MeshFilter myMeshFilter = new MeshFilter();
 
     public void AdvanceMeshCombine()
     {
+        // Getting the previous position and rotation so that it can be applied to the newly created objects
+        Quaternion oldRot = transform.rotation;
+        Vector3 oldPos = transform.position;
+
+        // Then setting the postition and rotation back to zero.
+        transform.rotation = Quaternion.identity;
+        transform.position = Vector3.zero;
+
         // Getting all MeshFilters
         MeshFilter[] filters = GetComponentsInChildren<MeshFilter>(false); // Make if false because we don't want to flatten the structure of the filters.
 
@@ -77,14 +87,14 @@ public class MeshCombiner : MonoBehaviour
                     {
                         mesh = item_2.sharedMesh,
                         subMeshIndex = materialIndex,
-                        transform = Matrix4x4.identity
+                        transform = item_2.transform.localToWorldMatrix
                     };
                     combiners.Add(ci);
                 }
 
                 // Now we can flatten the all the meshes into a single mesh
                 Mesh mesh = new Mesh();
-                mesh.CombineMeshes(combiners.ToArray(), false);
+                mesh.CombineMeshes(combiners.ToArray(), true);
                 submeshes.Add(mesh);
             }
         }
@@ -103,14 +113,21 @@ public class MeshCombiner : MonoBehaviour
         }
         Mesh finalMesh_2 = new Mesh();
         finalMesh_2.CombineMeshes(finalCombiners.ToArray(), false);
+        MeshFilter myMeshFilter = new MeshFilter();
         myMeshFilter.sharedMesh = finalMesh_2;
         Debug.Log("Final mesh has" + submeshes.Count + " materials.");
+
+
+        transform.rotation = oldRot;
+        transform.position = oldPos;
+
     }
 
 
 
     public void CombineMeshes()
     {
+        finalMesh = myMeshFilter.sharedMesh;
         if (finalMesh == null)
         {
             Mesh finalMesh = new Mesh();
@@ -173,6 +190,4 @@ public class MeshCombiner : MonoBehaviour
         }
 
     }
-
-
 }
