@@ -51,8 +51,12 @@ public class MeshCombiner : MonoBehaviour
 
         // This is getting a list of all the different materials that are in the selected object. 
         List<Material> materials = new List<Material>();
-        MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>(false); // findout what false means in this context// For each of the objects that are in our list, get the mesh renderer for each of those objects
-        foreach (MeshRenderer item in renderers)// Now we iterate through the mesgh renderers adding all the materials to the list, this time we can skip the parent object that has an material
+        
+        // findout what false means in this context// For each of the objects that are in our list, get the mesh renderer for each of those objects
+        MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>(false);
+        
+        // Now we iterate through the mesgh renderers adding all the materials to the list, this time we can skip the parent object that has an material
+        foreach (MeshRenderer item in renderers)
         {
             if (item.transform == transform) // This statement is to skip our selves from being added to the list of materials.
             {
@@ -134,8 +138,6 @@ public class MeshCombiner : MonoBehaviour
                     submeshes.Clear();
 
                 }
-
-
             }
         }
 
