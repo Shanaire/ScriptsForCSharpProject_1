@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class MeshCombiner : MonoBehaviour
 {
     /* 
@@ -19,6 +21,10 @@ public class MeshCombiner : MonoBehaviour
      * NEED TO WORK ON THE 65K VERTS LIMITATION 
      * 
      */
+
+    // Maximum amount of verticies that should be joined before crearting a different object.
+    [System.NonSerialized]
+    public int vertexLimit = 30000;
 
 
     public void AdvanceMeshCombine()
@@ -96,7 +102,15 @@ public class MeshCombiner : MonoBehaviour
                 // Now we can flatten the all the meshes into a single mesh
                 Mesh mesh = new Mesh();
                 mesh.CombineMeshes(combiners.ToArray(), true);
+
+                Debug.Log("Vert Count " + mesh.vertexCount);
+                
                 submeshes.Add(mesh);
+
+
+                // THINK ABOUT HAVING THE OBJECT CREATE A NEW OBJECT FOR EACH ITERATION OF THE MESH THAT IT IS DOING
+
+
             }
         }
         // Now we can create our final combiners that will combine all the submeshes into one mesh
@@ -110,6 +124,7 @@ public class MeshCombiner : MonoBehaviour
                 subMeshIndex = 0,
                 transform = Matrix4x4.identity
             };
+           
             finalCombiners.Add(ci);
         }
         Mesh finalMesh_2 = new Mesh();
