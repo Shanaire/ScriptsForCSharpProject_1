@@ -24,7 +24,7 @@ public class MeshCombiner : MonoBehaviour
 
     // Maximum amount of verticies that should be joined before crearting a different object.
     [System.NonSerialized]
-    public int vertexLimit = 30000;
+    public int vertexLimit = 5000;
 
     public Transform ParentTransform;
     public GameObject ParentMeshes;
@@ -78,7 +78,7 @@ public class MeshCombiner : MonoBehaviour
         // Now we are going to go through the process of creating a mesh for each of the materials that has been added to the materials list.
         // We are going to create a list of meshes, and it is going to be one for each materials.
         List<Mesh> submeshes = new List<Mesh>();
-        foreach (Material item in materials)
+        for (int item = 0; item < materials.Count; item++)
         {
             // This is going to go through the process of creating a combine instance for each of the materials that we are going to create a mesh for.
             // This will also go through all the children submeshes to see if anyof them have the materials that we are currently trying to find.
@@ -110,7 +110,7 @@ public class MeshCombiner : MonoBehaviour
 
                 for (int materialIndex = 0; materialIndex < localMaterials.Length; materialIndex++)
                 {
-                    if (localMaterials[materialIndex] != item)
+                    if (localMaterials[materialIndex] != materials[item])
                     {
                         continue;
                     }
@@ -130,29 +130,6 @@ public class MeshCombiner : MonoBehaviour
                     }
                 }
 
-
-
-                // THINK ABOUT HAVING THE OBJECT CREATE A NEW OBJECT FOR EACH ITERATION OF THE MESH THAT IT IS DOING
-                 if (vertexCount > vertexLimit)
-                {
-                    // change the foreach loop to a for loop, then i can do i -1
-                    item_2 -= 1;
-                    // Remove the last mesh we added to the list as the limit was exceeded.
-                    submeshes.RemoveAt(submeshes.Count - 1);
-
-                    // Instantiate an new gameObject withthe current geometry
-                    CreateCombinedMesh(submeshes, ParentMeshes);
-
-                    // set number of verts back to 0;
-                    vertexCount = 0;
-                    submeshes.Clear();
-
-                }
-
-
-
-
-
             }
 
             // Now we can flatten the all the meshes into a single mesh creatign one submesh for each material
@@ -169,9 +146,22 @@ public class MeshCombiner : MonoBehaviour
                 submeshes.Add(mesh);
             }
 
+            else if (vertexCount > vertexLimit)
+            {
+                // change the foreach loop to a for loop, then i can do i -1
+                item -= 1;
+                // Remove the last mesh we added to the list as the limit was exceeded.
+                Debug.Log("Submesh Count " + submeshes.Count);
+                submeshes.RemoveAt(submeshes.Count - 1);
 
+                // Instantiate an new gameObject withthe current geometry
+                CreateCombinedMesh(submeshes, ParentMeshes);
 
+                // set number of verts back to 0;
+                vertexCount = 0;
+                submeshes.Clear();
 
+            }
 
         }
 
@@ -212,6 +202,7 @@ public class MeshCombiner : MonoBehaviour
         _newGameObject.GetComponent<MeshFilter>().sharedMesh = newMesh;
 
         _newGameObject.GetComponent<MeshFilter>().sharedMesh.name = "newMeshes";
+
 
     }
 }
