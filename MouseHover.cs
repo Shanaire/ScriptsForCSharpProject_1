@@ -270,6 +270,7 @@ public class MouseHover : MonoBehaviour
 
     public void OnMouseOver()
     {
+        // If these cameras are disabled, then the 
         if ((_CameraManagerObject.CameraCount != 11) && (_CameraManagerObject.CameraCount != 12) &&
             (_CameraManagerObject.CameraCount != 13) && (_CameraManagerObject.CameraCount != 14) &&
             (_CameraManagerObject.CameraCount != 15) && (_CameraManagerObject.CameraCount != 16) &&

@@ -42,6 +42,9 @@ public class CameraManager : MonoBehaviour
 
     //__________________________________________________________________________________________//
 
+    private Camera PrevCam;
+    int PrevCamCount;
+
     // Camera and initial camera empty position
     public GameObject MainCam; public GameObject MainCam_INS;
     public Transform InitialCamPosition;
@@ -94,6 +97,8 @@ public class CameraManager : MonoBehaviour
 
     public void CameraTransition()
     {
+        /*  Disabling the camera transition scripts, using fading instead. 
+         *  
         // Transitioning to SubCam 1
         if (TransitionCode == 1)
         {
@@ -182,7 +187,7 @@ public class CameraManager : MonoBehaviour
             MainCam.transform.position = Vector3.Lerp(MainCam.gameObject.transform.position, CurrentTransform.transform.position, Time.deltaTime * TransitionSpeed);
             //MainCam.transform.position = Vector3.MoveTowards(MainCam.transform.position, currentView.transform.position, 1f * Time.deltaTime);
         }
-
+        */
     }
 
     public void CameraSwitching()
@@ -203,12 +208,16 @@ public class CameraManager : MonoBehaviour
         //Vector3 pos2 = currentView.transform.rotation.eulerAngles;
 
         //Debug.Log("checking pos " + Tpos1 + Tpos2);
-
+        // Change to sub camera 1
         if (CameraCount == 1)
         {
             // Disabling the camera transition
             // SubCam_[0].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
+           
+            // Making the Previous Camera equalling the active camera before disabling it, so that the back function can work
+            PrevCam = ActiveCamera;
+            PrevCamCount = 1;
             // Deactivating the Current Camera
             ActiveCamera.enabled = false;
 
@@ -226,12 +235,14 @@ public class CameraManager : MonoBehaviour
             }
 
         }
+        // Change to sub camera 2
         else if (CameraCount == 2)
         {
             // Disabling the camera transition
             // SubCam_[1].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
+            PrevCam = ActiveCamera;
             ActiveCamera.enabled = false;
 
             // Switching the Current Camera to a Sub Camera
@@ -247,12 +258,14 @@ public class CameraManager : MonoBehaviour
                 TransitionCode = 2;
             }
         }
+        // Change to sub camera 3
         else if (CameraCount == 3)
         {
             // Disabling the camera transition
             // SubCam_[2].transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y, MainCam.transform.position.z);
 
             // Deactivating the Current Camera
+            PrevCam = ActiveCamera;
             ActiveCamera.enabled = false;
 
             // Switching the Current Camera to a Sub Camera
@@ -477,7 +490,8 @@ public class CameraManager : MonoBehaviour
 
                     if (Physics.Raycast(RayToObject, out hit))
                     {
-                        /*  // Casting a Ray for SubSection 1 and changing the Camera Count
+                        /*  
+                         *  // Casting a Ray for SubSection 1 and changing the Camera Count
                           if ((hit.collider.transform.tag == "Room1") || (hit.collider.transform.tag == "Room2") || (hit.collider.transform.tag == "Room3"))
                           {
 
@@ -488,6 +502,7 @@ public class CameraManager : MonoBehaviour
                               else
                                   CameraCount = 1;
                           }
+                          *
                           */
 
                         // Casting a Ray for SubSection 2 and changing the Camera Count
@@ -502,7 +517,7 @@ public class CameraManager : MonoBehaviour
                         if (hit.collider.tag == "Room7")
                         {
                             FadeToCam.RoomFadeOUT();
-                            CameraCount = 3;
+                            CameraCount = 17;
                             FadeToCam.RoomFadeIN();
                         }
 
@@ -592,6 +607,16 @@ public class CameraManager : MonoBehaviour
     // This is going to be a revse transition back to the main camera's initial position
     public void ReverseTransition()
     {
+        // Create a variable to hold the previous camera position
+        Camera PrevCamPos = new Camera();
+        
+        //Then
+
+        // So i need to get the last camera positition and store it in PrevCamPos.
+        PrevCamCount = CameraCount;
+        PrevCamPos = ;
+
+
         // Fading Camera
         FadeToCam.RoomFadeOUT();
         // Set the current transition point to the transition position of the main camera's

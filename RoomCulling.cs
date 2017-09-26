@@ -94,6 +94,7 @@ public class RoomCulling : MonoBehaviour
         MainCamFunc();
 
         Debug.Log(MainCam_.enabled);
+
         StateChanged();
     }
 
@@ -264,8 +265,8 @@ public class RoomCulling : MonoBehaviour
                 item.SetActive(true);
                 CountListItems += 1;
 
-                Debug.Log("RoomCol.Count = " + RoomCol.Count);
-                Debug.Log("CountListItems = " + CountListItems);
+                //Debug.Log("RoomCol.Count = " + RoomCol.Count);
+                //Debug.Log("CountListItems = " + CountListItems);
 
                 if (CountListItems == RoomCol.Count)
                 {
