@@ -47,13 +47,13 @@ public class MeshCombiner : MonoBehaviour
         transform.position = Vector3.zero;
 
         // Getting all MeshFilters (For this gameObjects get all the mesh filters from the children that are attached to it)
-        MeshFilter[] filters = GetComponentsInChildren<MeshFilter>(true); // Make if FALSE because we don't want to flatten the structure of the filters.
+        MeshFilter[] filters = GetComponentsInChildren<MeshFilter>(false); // Make if FALSE because we don't want to flatten the structure of the filters.
 
         // This is getting a list of all the different materials that are in the selected object. 
         List<Material> materials = new List<Material>();
         
         // findout what false means in this context// For each of the objects that are in our list, get the mesh renderer for each of those objects
-        MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>(true);
+        MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>(false);
         
         // Now we iterate through the mesgh renderers adding all the materials to the list, this time we can skip the parent object that has an material
         foreach (MeshRenderer item in renderers)
@@ -124,23 +124,16 @@ public class MeshCombiner : MonoBehaviour
                             subMeshIndex = materialUsed,
                             transform = filters[item_2].transform.localToWorldMatrix
                         };
+                        Debug.Log("Sub Mesh index Count " + ci.subMeshIndex);
                         combiners.Add(ci);
+                        Debug.Log("Combiners Count " + combiners.Count);
                     }
                 }
 
-                // Now we can flatten the all the meshes into a single mesh
-                Mesh mesh = new Mesh();
-                mesh.CombineMeshes(combiners.ToArray(), true);
-
-                submeshes.Add(mesh);
 
 
                 // THINK ABOUT HAVING THE OBJECT CREATE A NEW OBJECT FOR EACH ITERATION OF THE MESH THAT IT IS DOING
-
-                vertexCount += mesh.vertexCount;
-                Debug.Log("Vert Count " + vertexCount);
-
-                if (vertexCount > vertexLimit)
+                 if (vertexCount > vertexLimit)
                 {
                     // change the foreach loop to a for loop, then i can do i -1
                     item_2 -= 1;
@@ -155,7 +148,31 @@ public class MeshCombiner : MonoBehaviour
                     submeshes.Clear();
 
                 }
+
+
+
+
+
             }
+
+            // Now we can flatten the all the meshes into a single mesh creatign one submesh for each material
+            Mesh mesh = new Mesh();
+            mesh.CombineMeshes(combiners.ToArray(), true);
+
+            Debug.Log("Submesh Count " + submeshes.Count);
+
+            vertexCount += mesh.vertexCount;
+            Debug.Log("Vert Count " + vertexCount);
+
+            if (vertexCount < vertexLimit)
+            {
+                submeshes.Add(mesh);
+            }
+
+
+
+
+
         }
 
         CreateCombinedMesh(submeshes, ParentMeshes);
@@ -195,5 +212,6 @@ public class MeshCombiner : MonoBehaviour
         _newGameObject.GetComponent<MeshFilter>().sharedMesh = newMesh;
 
         _newGameObject.GetComponent<MeshFilter>().sharedMesh.name = "newMeshes";
+
     }
 }
