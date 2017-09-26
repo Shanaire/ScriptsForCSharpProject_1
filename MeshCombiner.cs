@@ -143,10 +143,10 @@ public class MeshCombiner : MonoBehaviour
 
         CreateCombinedMesh(submeshes, ParentMeshes);
 
-
-        /* [BREAK TO REJOIN IF NECESSARY]*/
     }
 
+
+    // This function is used to instantiate or create a new gameobject to the parent that is specified, to house the combined meshes.
     // Function to create the combined meshes;
     public void CreateCombinedMesh(List<Mesh> ListOfMeshes, GameObject ObjToSaveTo)
     {
@@ -170,124 +170,17 @@ public class MeshCombiner : MonoBehaviour
 
         newMesh.CombineMeshes(finalCombiners.ToArray(),false);
 
+
+
+
         // Instantiate a new game object to hold the combined meshes.
         GameObject _newGameObject = Instantiate(ObjToSaveTo, Vector3.zero, Quaternion.identity) as GameObject;
 
         _newGameObject.transform.parent = ParentTransform;
         // Add the mesh to the mesh filter of the new game object;
         _newGameObject.GetComponent<MeshFilter>().sharedMesh = newMesh;
-    }
-}
 
-
-
-
-
-
-
-/*              [BREAK FOR TESTING]
-            // Now we can create our final combiners that will combine all the submeshes into one mesh
-
-            List<CombineInstance> finalCombiners = new List<CombineInstance>(); // A list to hold all the final set of combine instances that is to be placed into the final mesh
-            foreach (Mesh item in submeshes)
-            {
-                CombineInstance ci = new CombineInstance
-                {
-                    mesh = item,
-                    subMeshIndex = 0,
-                    transform = Matrix4x4.identity
-                };
-
-                finalCombiners.Add(ci);
-            }
-            Mesh finalMesh_2 = new Mesh();
-            finalMesh_2.CombineMeshes(finalCombiners.ToArray(), false);
-
-
-            myMeshFilter.sharedMesh = finalMesh_2;
-
-            //Debug.Log("Final mesh has" + submeshes.Count + " materials.");
-
-
-            transform.rotation = oldRot;
-            transform.position = oldPos;
-
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                transform.GetChild(i).gameObject.SetActive(false);
-            }
-
-        }
-
-        */
-
-
-
-
-
-
-
-
-
-    /*
-
-    public void CombineMeshes()
-    {
-        // This is getting the MeshFilter component of the parent gameobject and storing it in myMeshFilter
-        MeshFilter myMeshFilter = new MeshFilter();
-        myMeshFilter = GetComponent<MeshFilter>();
-
-        // Getting the previous position and rotation so that it can be applied to the newly created objects
-        Quaternion oldRot = transform.rotation;
-        Vector3 oldPos = transform.position;
-
-        // Then setting the postition and rotation back to zero.
-        transform.rotation = Quaternion.identity;
-        transform.position = Vector3.zero;
-
-        // Finding all the mesh filters that are on the children of the parent objects.
-        MeshFilter[] filters = GetComponentsInChildren<MeshFilter>();
-
-        // This is now creating a mesh to add all of the meshes that are children of the parent into a single mesh object.
-        //Mesh finalMesh = new Mesh();
-
-        Debug.Log("CombineMeshes" + filters.Length);
-
-        // This is the instance of a mesh combiner that is going to house the objects from the previous objects.;
-        List<CombineInstance> combiners = new List<CombineInstance>();
-
-        // for each of the meshes in the mesh filter, we are adding these to the new mesh comining it into one mesh
-        foreach (MeshFilter item in filters)
-        {
-            if (item == myMeshFilter)
-            {
-                continue;
-            }
-
-            CombineInstance ci = new CombineInstance
-            {
-                subMeshIndex = 0,
-                mesh = item.sharedMesh,
-                transform = item.transform.localToWorldMatrix
-            };
-            combiners.Add(ci);
-        }
-
-        Mesh finalMesh = new Mesh();
-        // Adding all the meshes into the final mesh.
-        finalMesh.CombineMeshes(combiners.ToArray(), true);
-
-        // This is getting the parent mesh filter and displaying it.
-        myMeshFilter.sharedMesh = finalMesh;
-
-        transform.rotation = oldRot;
-        transform.position = oldPos;
-
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).gameObject.SetActive(false);
-        }
+        _newGameObject.GetComponent<MeshFilter>().sharedMesh.name = "newMeshes";
 
     }
 }
-*/
